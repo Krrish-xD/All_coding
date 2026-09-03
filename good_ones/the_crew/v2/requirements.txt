@@ -1,0 +1,21 @@
+# Deep Research Agent v2 - Python Dependencies
+
+# AI/LLM
+google-generativeai>=0.7.0
+
+# Search
+duckduckgo-search>=6.2.6
+
+# Web Scraping
+trafilatura>=1.8.0
+requests>=2.32.3
+
+# Semantic Caching
+sentence-transformers>=2.2.0
+
+# Utilities
+numpy>=1.24.0
+rich>=13.0.0
+
+# Note: The gemini CLI tool must be installed separately
+# See README.md for installation instructions

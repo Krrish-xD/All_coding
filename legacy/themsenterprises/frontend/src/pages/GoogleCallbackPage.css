@@ -1,0 +1,61 @@
+.google-callback-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.callback-container {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.callback-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+
+
+.callback-content h2 {
+  color: #333;
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.callback-content p {
+  color: #666;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.callback-content .error-message {
+  background: #fee;
+  color: #c33;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #fcc;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.callback-content .success-message {
+  background: #efe;
+  color: #363;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #cfc;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}

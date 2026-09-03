@@ -1,0 +1,30 @@
+modules = ["python-3.11"]
+[agent]
+expertMode = true
+
+[nix]
+channel = "stable-25_05"
+packages = ["alsa-lib", "dbus", "fontconfig", "freetype", "gcc-unwrapped", "glib", "libGL", "libGLU", "libatomic_ops", "libdrm", "libglvnd", "libxkbcommon", "mesa", "nss", "wayland", "xorg.libX11", "xorg.libXScrnSaver", "xorg.libXcomposite", "xorg.libXcursor", "xorg.libXdamage", "xorg.libXext", "xorg.libXfixes", "xorg.libXi", "xorg.libXrandr", "xorg.libXtst", "zstd"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "ChatGPT Browser (Headless)"
+
+[[workflows.workflow]]
+name = "ChatGPT Browser (Headless)"
+author = "agent"
+
+[workflows.workflow.metadata]
+outputType = "console"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python main.py --headless"

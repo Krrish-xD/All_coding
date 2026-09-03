@@ -1,0 +1,612 @@
+/* ========================================
+   WISHLIST CONTAINER & LAYOUT
+   ======================================== */
+
+.account-wishlist {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+.account-wishlist * {
+  box-sizing: border-box;
+}
+
+/* Main Title */
+.aw-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 2rem 0;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.aw-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #dc2626, #ef4444);
+  border-radius: 2px;
+}
+
+/* ========================================
+   TOOLBAR SECTION
+   ======================================== */
+
+.aw-toolbar {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 992px) {
+  .aw-toolbar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+  }
+}
+
+/* Search Bar */
+.aw-search {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.aw-search-icon {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  color: #6b7280;
+  font-size: 1.125rem;
+  pointer-events: none;
+}
+
+.aw-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 1rem 0 3rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 0.9375rem;
+  transition: all 0.2s ease;
+  background: #f9fafb;
+}
+
+.aw-input:focus {
+  outline: none;
+  border-color: #dc2626;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.1);
+}
+
+.aw-input::placeholder {
+  color: #9ca3af;
+}
+
+/* Filter Controls */
+.aw-selects {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.aw-select {
+  height: 44px;
+  padding: 0 2.5rem 0 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  background: white;
+  font-size: 0.9375rem;
+  color: #111827;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  min-width: 140px;
+}
+
+.aw-select:hover {
+  border-color: #d1d5db;
+  background-color: #f9fafb;
+}
+
+.aw-select:focus {
+  outline: none;
+  border-color: #dc2626;
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.1);
+}
+
+/* Bulk Actions */
+.aw-bulk-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 992px) {
+  .aw-bulk-actions {
+    justify-content: flex-end;
+  }
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+.aw-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 44px;
+  padding: 0 1.25rem;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.aw-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Ghost Button */
+.aw-btn-ghost {
+  background: white;
+  color: #374151;
+  border-color: #e5e7eb;
+}
+
+.aw-btn-ghost:hover:not(:disabled) {
+  background: #f9fafb;
+  border-color: #d1d5db;
+  transform: translateY(-1px);
+}
+
+/* Primary Button */
+.aw-btn-primary {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+}
+
+.aw-btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+}
+
+/* Danger Button */
+.aw-btn-danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.25);
+}
+
+.aw-btn-danger:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.35);
+}
+
+/* Selected Count Badge */
+.aw-selected-count {
+  background: #dbeafe;
+  color: #1e40af;
+  padding: 0.375rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+/* ========================================
+   PRODUCT GRID
+   ======================================== */
+
+.aw-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .aw-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   PRODUCT CARD
+   ======================================== */
+
+.aw-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 380px;
+}
+
+.aw-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  border-color: #d1d5db;
+}
+
+.aw-card.selected {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/* Checkbox */
+.aw-check {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.aw-check:hover {
+  background: #f9fafb;
+  border-color: #dc2626;
+  transform: scale(1.05);
+}
+
+.aw-check svg {
+  font-size: 1.125rem;
+  color: #dc2626;
+}
+
+/* Image Container */
+.aw-img {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background: #f3f4f6;
+  overflow: hidden;
+}
+
+.aw-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.aw-card:hover .aw-img img {
+  transform: scale(1.05);
+}
+
+/* Badges */
+.aw-badges {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+
+.aw-badge {
+  background: white;
+  padding: 0.375rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.aw-badge-custom {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: white;
+}
+
+/* Card Body */
+.aw-body {
+  padding: 1rem 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.aw-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  margin: 0;
+}
+
+.aw-meta {
+  margin-top: auto;
+}
+
+.aw-price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #dc2626;
+}
+
+/* Card Actions */
+.aw-actions {
+  padding: 0 1.25rem 1.25rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.aw-full {
+  flex: 1;
+  height: 40px;
+  font-size: 0.875rem;
+}
+
+.aw-icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid #e5e7eb;
+  background: white;
+  color: #ef4444;
+}
+
+.aw-icon-btn:hover {
+  background: #fee2e2;
+  border-color: #ef4444;
+  transform: scale(1.05);
+}
+
+.aw-icon-btn svg {
+  font-size: 1.125rem;
+}
+
+/* ========================================
+   EMPTY STATE
+   ======================================== */
+
+.aw-empty {
+  background: white;
+  border-radius: 24px;
+  padding: 4rem 2rem;
+  text-align: center;
+  border: 2px dashed #e5e7eb;
+  margin: 3rem auto;
+  max-width: 500px;
+}
+
+.aw-empty-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aw-empty-icon svg {
+  font-size: 2.5rem;
+  color: #dc2626;
+}
+
+.aw-empty h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 0.5rem 0;
+}
+
+.aw-empty p {
+  color: #6b7280;
+  margin: 0 0 2rem 0;
+  font-size: 1rem;
+}
+
+.aw-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  color: white;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.25);
+}
+
+.aw-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.35);
+}
+
+/* ========================================
+   ERROR STATE
+   ======================================== */
+
+.aw-error {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #fecaca;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.aw-error::before {
+  content: '⚠️';
+  font-size: 1.25rem;
+}
+
+/* ========================================
+   LOADING STATE
+   ======================================== */
+
+.skeleton-toolbar {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.skeleton-line {
+  height: 44px;
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 12px;
+  flex: 1;
+}
+
+.skeleton-line.short {
+  flex: 0 0 140px;
+}
+
+.aw-card.skeleton {
+  background: white;
+  height: 380px;
+}
+
+.aw-card.skeleton .aw-img {
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.aw-card.skeleton .aw-body {
+  padding: 1.25rem;
+}
+
+.skeleton-pill {
+  height: 20px;
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
+@media (max-width: 768px) {
+  .account-wishlist {
+    padding: 1rem;
+  }
+
+  .aw-title {
+    font-size: 1.5rem;
+  }
+
+  .aw-toolbar {
+    padding: 1rem;
+  }
+
+  .aw-bulk-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .aw-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .aw-selected-count {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .aw-card,
+  .aw-btn,
+  .aw-check,
+  .aw-icon-btn,
+  .aw-img img {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Focus styles for keyboard navigation */
+.aw-btn:focus-visible,
+.aw-check:focus-visible,
+.aw-icon-btn:focus-visible,
+.aw-input:focus-visible,
+.aw-select:focus-visible {
+  outline: 2px solid #dc2626;
+  outline-offset: 2px;
+}

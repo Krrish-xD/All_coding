@@ -1,0 +1,328 @@
+/* General Hero Section Container */
+.new-hero-section {
+  margin-top: -1.5rem;
+  display: flex;
+  width: 100%;
+  height: 50vw; /* Square aspect ratio for splits */
+  background-color: #dbdee3; /* Surface color */
+  overflow: hidden;
+  position: relative;
+  padding: 20px; /* Gap from screen edges */
+  gap: 20px; /* Gap between the two splits */
+  isolation: isolate;
+}
+
+/* Performance: pause animations by default; enable when in view and ready */
+.scrolling-column {
+  animation-play-state: paused;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.hero-inview .animation-ready .scrolling-column {
+  animation-play-state: running;
+}
+
+.hero-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Each half of the hero section */
+.hero-split {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px; /* Rounded corners */
+}
+
+/* Subtle hover elevate effect */
+@media (hover: hover) and (pointer: fine) {
+  .hero-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(70% 60% at 50% 50%, rgba(255,255,255,0.12), rgba(255,255,255,0));
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    z-index: 2; /* Below text overlay (z-index: 3) */
+    pointer-events: none;
+  }
+
+  .hero-link:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 20px 35px -15px rgba(0, 0, 0, 0.35),
+      0 8px 14px -12px rgba(0, 0, 0, 0.2);
+  }
+
+  .hero-link:hover::after {
+    opacity: 1;
+  }
+}
+
+/* Container for the scrolling grids to manage animations */
+.scrolling-grid-container {
+  display: flex; /* Use flexbox to manage columns */
+  height: 100%;
+  gap: 10px; /* Reduced distance between columns */
+}
+
+.scrolling-column-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Reduced distance between rows */
+  flex-shrink: 0;
+  width: calc(25% - 7.5px); /* 4 columns with 10px gap */
+}
+
+.scrolling-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Reduced distance between rows */
+}
+
+/* Staggered start positions are now handled dynamically in JS */
+
+/* Animation for scrolling up */
+@keyframes scrollUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+/* Animation for scrolling down */
+@keyframes scrollDown {
+  0% { transform: translateY(-50%); }
+  100% { transform: translateY(0); }
+}
+
+/* Slightly slower animation for less distraction */
+.scrolling-grid-container.up .scrolling-column {
+  animation: scrollUp 90s linear infinite; /* Slowed from 70s */
+}
+
+.scrolling-grid-container.down .scrolling-column {
+  animation: scrollDown 90s linear infinite; /* Slowed from 70s */
+}
+
+.grid-item {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.grid-item .sprite {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+  /* The scale factor will be applied via an inline style from JS */
+}
+
+/* The .sprite divs inside grid-item will get their size from the generated sprite CSS */
+
+/* Text Overlay and Cloud Effect */
+.hero-text-overlay {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #F5F5F5; /* Primary text color */
+  z-index: 3;
+}
+
+.hero-link.left .hero-text-overlay { left: 0; text-align: center; }
+.hero-link.right .hero-text-overlay { right: 0; text-align: center; }
+
+/* Responsive text with black background - properly centered */
+.hero-text-overlay h2 {
+  /* Responsive font size using clamp */
+  font-size: clamp(1.2rem, 4vw, 3rem);
+  font-weight: bold;
+  z-index: 4;
+
+  /* Black pill background */
+  background-color: rgba(0, 0, 0, 0.65);
+  border-radius: 100px;
+
+  /* Dynamic padding for proper centering */
+  padding: clamp(0.4rem, 0.8vw, 1.2rem) clamp(1.2rem, 3vw, 2.5rem);
+  
+  /* Center text within the pill */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Prevent text wrapping */
+  white-space: nowrap;
+  
+  /* Text styling */
+  color: #ffffff;
+  
+  /* Remove text stroke for cleaner look on black background */
+  -webkit-text-stroke: none;
+  
+  /* Subtle text shadow for depth */
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.3);
+  
+  /* Smooth rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Smooth transition for hover states */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Optional: Subtle hover effect on the text pill */
+@media (hover: hover) and (pointer: fine) {
+  .hero-link:hover .hero-text-overlay h2 {
+    background-color: rgba(0, 0, 0, 0.85);
+    transform: scale(1.05);
+  }
+}
+
+/* Hover hint pill */
+@media (hover: hover) and (pointer: fine) {
+  .cta-hint {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translate(-50%, 6px);
+    padding: 8px 14px;
+    background: rgba(26, 26, 26, 0.65);
+    color: #fff;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    backdrop-filter: saturate(1.1) blur(6px);
+    box-shadow:
+      0 6px 14px -8px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    opacity: 0;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 4;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  .hero-link:hover .cta-hint {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* Subtle cloud background - slightly more visible */
+.cloud-background {
+  position: absolute;
+  width: 58%;
+  height: 40%;
+  background: radial-gradient(
+    ellipse at center, 
+    rgba(255, 255, 255, 0.15), /* Slightly more opaque */
+    rgba(255, 255, 255, 0)
+  );
+  border-radius: 50%;
+  filter: blur(40px);
+  z-index: 2;
+  animation: pulse 10s ease-in-out infinite alternate, drift 30s linear infinite alternate;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.1); opacity: 0.9; }
+}
+
+@keyframes drift {
+  0% { transform: translate(-2%, -2%) scale(1); }
+  50% { transform: translate(2%, 2%) scale(1.05); }
+  100% { transform: translate(-2%, -2%) scale(1); }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .hero-text-overlay h2 {
+    font-size: clamp(1.2rem, 3.5vw, 2.8rem);
+    padding: clamp(0.4rem, 1.4vw, 1rem) clamp(1rem, 2.8vw, 2rem);
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-text-overlay h2 {
+    font-size: clamp(1rem, 3.2vw, 2.4rem);
+    padding: clamp(0.3rem, 1.2vw, 0.8rem) clamp(0.8rem, 2.4vw, 1.6rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .new-hero-section {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .hero-split {
+    width: 100%;
+    height: 0;
+    padding-bottom: 80%; /* Smaller square on mobile */
+    position: relative;
+  }
+
+  .scrolling-grid-container {
+    position: absolute;
+    inset: 0;
+    gap: 5px;
+  }
+
+  .hero-text-overlay h2 {
+    font-size: clamp(1rem, 5vw, 2rem);
+    padding: clamp(0.3rem, 1.6vw, 0.6rem) clamp(0.6rem, 3.2vw, 1.2rem);
+  }
+
+  .scrolling-column { gap: 5px; }
+
+  .scrolling-column-wrapper {
+    width: calc(25% - 3.75px); /* Corrected width for 5px gap */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text-overlay h2 {
+    font-size: clamp(0.8rem, 4vw, 1.6rem);
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .scrolling-grid-container.up .scrolling-column,
+  .scrolling-grid-container.down .scrolling-column,
+  .cloud-background {
+    animation: none !important;
+  }
+
+  .hero-link {
+    transition: none;
+  }
+  
+  .hero-text-overlay h2 {
+    transition: none;
+  }
+}

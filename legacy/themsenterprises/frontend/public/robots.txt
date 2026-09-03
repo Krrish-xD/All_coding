@@ -1,0 +1,92 @@
+# https://www.robotstxt.org/robotstxt.html
+
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Disallow crawling of admin pages
+Disallow: /admin
+Disallow: /admin2009
+Disallow: /admin/
+
+# Disallow crawling of user account pages
+Disallow: /profile
+Disallow: /profile/
+Disallow: /account
+Disallow: /account/
+
+# Disallow crawling of checkout process
+Disallow: /checkout
+Disallow: /checkout/
+Disallow: /cart
+Disallow: /payment
+
+# Disallow crawling of user-specific pages
+Disallow: /orders
+Disallow: /orders/
+Disallow: /my-orders
+
+# Disallow crawling of authentication pages
+Disallow: /login
+Disallow: /register
+Disallow: /forgot-password
+Disallow: /reset-password
+
+# Disallow crawling of API endpoints (shouldn't be accessible via browser anyway)
+Disallow: /api
+Disallow: /api/
+
+# Disallow crawling of search results (prevents duplicate content)
+Disallow: /search?
+Disallow: /*?q=
+Disallow: /*?query=
+
+# Allow crawling of product pages
+Allow: /products
+Allow: /products/*
+
+# Allow crawling of category pages
+Allow: /categories
+Allow: /categories/*
+
+# Allow crawling of static pages
+Allow: /about
+Allow: /contact
+Allow: /privacy-policy
+Allow: /terms-of-service
+
+# Sitemap location
+Sitemap: https://themsenterprises.com/sitemap.xml
+
+# Crawl delay (optional - be polite to avoid overloading server)
+# Crawl-delay: 10
+
+# Specific rules for major search engines (optional)
+
+# Google
+User-agent: Googlebot
+Allow: /
+Disallow: /admin
+Disallow: /profile
+Disallow: /checkout
+
+# Google Images
+User-agent: Googlebot-Image
+Allow: /
+Disallow: /admin
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Disallow: /admin
+Disallow: /profile
+
+# Block bad bots (optional - add known bad bots here)
+User-agent: BadBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Crawl-delay: 30

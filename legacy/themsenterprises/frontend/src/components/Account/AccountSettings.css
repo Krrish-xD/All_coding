@@ -1,0 +1,56 @@
+
+.settings-flex-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem; /* This creates the space */
+}
+
+.update-profile-section {
+  margin-bottom: 4rem; /* Adds space below the Update Profile section */
+}
+
+.danger-zone {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.danger-zone h3 {
+  color: #ef4444;
+}
+
+.danger-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-danger {
+  background-color: #ef4444;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+}
+
+.btn-danger:hover {
+  background-color: #dc2626;
+}
+
+.btn-danger-outline {
+  background-color: transparent;
+  border: 1px solid #ef4444;
+  color: #ef4444;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.btn-danger-outline:hover {
+  background-color: #ef4444;
+  color: white;
+}

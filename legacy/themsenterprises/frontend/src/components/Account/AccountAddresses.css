@@ -1,0 +1,140 @@
+.addresses-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.addresses-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.add-address-btn {
+  background: #e50000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+  margin-top: 0; /* Remove unwanted top margin */
+  margin-left: 1rem; /* Add space to the left */
+}
+
+.add-address-btn:hover {
+  background: #cc0000;
+}
+
+.existing-addresses h3, .address-form h3 {
+  margin-bottom: 24px;
+  color: #1a1a1a;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.address-card {
+  border: 1px solid rgba(233, 236, 239, 0.5);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  position: relative;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.address-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.address-card.default {
+  border-color: #e50000;
+  background: linear-gradient(135deg, rgba(229, 0, 0, 0.05), rgba(229, 0, 0, 0.02));
+  box-shadow: 0 4px 16px rgba(229, 0, 0, 0.1);
+}
+
+.default-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: linear-gradient(135deg, #e50000, #cc0000);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(229, 0, 0, 0.3);
+}
+
+.address-details {
+  flex: 1;
+}
+
+.address-details p {
+  margin: 0 0 8px 0;
+  color: #1a1a1a;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.address-details p:last-child {
+  margin-bottom: 0;
+}
+
+.address-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.address-card:hover .address-actions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.edit-btn, .delete-btn {
+  background: none;
+  border: 1px solid #dee2e6;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.edit-btn {
+  color: #e50000;
+}
+
+.edit-btn:hover {
+  background: rgba(229, 0, 0, 0.05);
+  color: #e50000;
+  border-color: #e50000;
+  transform: translateY(-1px);
+}
+
+.delete-btn {
+  color: #dc3545;
+}
+
+.delete-btn:hover {
+  background: rgba(220, 53, 69, 0.05);
+  color: #dc3545;
+  border-color: #dc3545;
+  transform: translateY(-1px);
+}

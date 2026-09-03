@@ -1,0 +1,243 @@
+/* frontend/src/pages/CheckoutPage.css */
+
+.checkout-page {
+  padding: 2rem 1rem;
+  min-height: 100vh;
+}
+
+.checkout-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.checkout-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.checkout-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.checkout-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.checkout-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.checkout-card-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.checkout-card-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.checkout-card-body {
+  padding: 1.5rem;
+}
+
+/* Address Section */
+.address-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.address-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative; /* Needed for absolute positioning of the button */
+}
+
+.delete-address-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.delete-address-btn:hover {
+  background-color: #f3f4f6;
+  color: #ef4444;
+}
+
+.address-item.selected {
+  border-color: #dc2626;
+  background-color: #fef2f2;
+  box-shadow: 0 0 0 2px #dc2626;
+}
+
+.address-item input[type='radio'] {
+  margin-top: 0.25rem;
+  accent-color: #dc2626;
+}
+
+.address-details p {
+  margin: 0;
+  line-height: 1.5;
+  color: #4b5563;
+}
+
+.address-details strong {
+  color: #111827;
+}
+
+.add-address-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem; /* Increased spacing */
+}
+
+.add-address-btn {
+  /* width: 100%; */ /* Removed to allow centering */
+  padding: 0.75rem 1.5rem; /* Added more horizontal padding */
+  background: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-address-btn:hover {
+  background-color: #111827;
+}
+
+/* Order Summary */
+.checkout-sidebar {
+  position: sticky;
+  top: 2rem;
+}
+
+.price-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.price-row.total {
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+}
+
+.price-row.discount-row span:last-child {
+  color: #16a34a;
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 0.875rem;
+  background: #dc2626;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.checkout-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Address Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.address-modal {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+}
+
+.address-form .form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.address-form .form-field {
+  margin-bottom: 1rem;
+}
+
+.address-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.address-form input,
+.address-form select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .checkout-grid {
+    grid-template-columns: 1fr;
+  }
+}

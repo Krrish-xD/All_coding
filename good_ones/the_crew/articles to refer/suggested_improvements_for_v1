@@ -1,0 +1,182 @@
+1. Add Source Quality Scoring
+pythondef score_source_quality(url: str, text: str) -> int:
+    """Score source reliability 1-5 based on domain and content"""
+    score = 3  # baseline
+    
+    # Boost for academic/authoritative domains
+    if any(d in url.lower() for d in ['.edu', '.gov', 'arxiv.org', 'nature.com', 'science.org']):
+        score += 2
+    
+    # Boost for established news/media
+    elif any(d in url.lower() for d in ['reuters.com', 'apnews.com', 'bbc.com', 'nytimes.com']):
+        score += 1
+    
+    # Penalize for low-quality indicators
+    if any(d in url.lower() for d in ['blog', 'wordpress', 'medium.com']):
+        score -= 1
+    
+    # Content quality signals
+    if len(text) > 3000 and any(word in text.lower() for word in ['study', 'research', 'data', 'analysis']):
+        score += 1
+    
+    return max(1, min(5, score))
+Why: Prioritize high-quality sources in summarization, weight evidence appropriately.
+
+2. Implement Smart Caching
+python# Cache search results and scraped content
+CACHE_DIR = os.path.join(DATA_ROOT, ".cache")
+
+def get_cached_scrape(url: str) -> Optional[str]:
+    """Check if we've scraped this URL in the last 7 days"""
+    cache_key = hashlib.md5(url.encode()).hexdigest()
+    cache_file = os.path.join(CACHE_DIR, f"{cache_key}.json")
+    
+    if os.path.exists(cache_file):
+        with open(cache_file) as f:
+            data = json.load(f)
+            # Check if less than 7 days old
+            if time.time() - data['timestamp'] < 7 * 24 * 3600:
+                return data['text']
+    return None
+Why: Avoid re-scraping same URLs across sessions, faster iteration, respectful of websites.
+
+3. Add Question Deduplication
+pythondef dedupe_questions(new_questions: List[str], previous_questions: List[str]) -> List[str]:
+    """Remove semantically similar questions using simple keyword overlap"""
+    unique = []
+    all_prev = ' '.join(previous_questions).lower()
+    
+    for q in new_questions:
+        keywords = set(re.findall(r'\b\w{4,}\b', q.lower()))
+        prev_keywords = set(re.findall(r'\b\w{4,}\b', all_prev))
+        
+        # If less than 60% keyword overlap, consider it unique
+        overlap = len(keywords & prev_keywords) / len(keywords) if keywords else 0
+        if overlap < 0.6:
+            unique.append(q)
+    
+    return unique
+Why: Prevent wasting rounds on essentially the same questions.
+
+4. Add Diversity Enforcement in Search
+pythondef diversify_urls(urls: List[str], max_per_domain: int = 3) -> List[str]:
+    """Limit URLs from same domain to ensure source diversity"""
+    from collections import defaultdict
+    domain_counts = defaultdict(int)
+    diverse = []
+    
+    for url in urls:
+        domain = urlparse(url).netloc
+        if domain_counts[domain] < max_per_domain:
+            diverse.append(url)
+            domain_counts[domain] += 1
+    
+    return diverse
+Why: Avoid echo chambers, get multiple perspectives, better coverage.
+
+5. Add Intermediate Checkpoints
+pythondef save_checkpoint(cfg: SessionConfig, all_rounds: List[Dict], checkpoint_name: str):
+    """Save progress to resume if interrupted"""
+    checkpoint_path = os.path.join(cfg.session_dir, f"checkpoint_{checkpoint_name}.json")
+    json_dump(checkpoint_path, {
+        'rounds': all_rounds,
+        'timestamp': now_iso(),
+        'completed': checkpoint_name
+    })
+
+def load_checkpoint(session_dir: str) -> Optional[Dict]:
+    """Resume from last checkpoint if available"""
+    checkpoints = sorted([f for f in os.listdir(session_dir) if f.startswith('checkpoint_')])
+    if checkpoints:
+        with open(os.path.join(session_dir, checkpoints[-1])) as f:
+            return json.load(f)
+    return None
+Why: Long research sessions can fail; don't lose work. Resume capability.
+
+6. Add Token/Cost Tracking
+python@dataclass
+class UsageStats:
+    total_api_calls: int = 0
+    total_input_tokens: int = 0
+    total_output_tokens: int = 0
+    estimated_cost: float = 0.0
+    
+    def update(self, input_len: int, output_len: int):
+        self.total_api_calls += 1
+        self.total_input_tokens += input_len
+        self.total_output_tokens += output_len
+        # Gemini pricing example
+        self.estimated_cost += (input_len / 1000 * 0.00125) + (output_len / 1000 * 0.005)
+
+# Add to SessionConfig and update after each API call
+Why: Budget awareness, optimize costs, track efficiency.
+
+7. Implement Query Expansion for Better Search
+pythondef expand_query(question: str, topic: str) -> List[str]:
+    """Generate multiple search queries for the same question"""
+    queries = [question]
+    
+    # Add topic context
+    queries.append(f"{topic} {question}")
+    
+    # Add academic variant
+    queries.append(f"{question} research study")
+    
+    # Add recent variant
+    queries.append(f"{question} 2024 2025")
+    
+    return queries
+
+# Then in search_for_question, try multiple queries and merge results
+Why: Single query might miss relevant sources, multiple angles find more.
+
+8. Add Fact-Checking Cross-Reference
+pythondef cross_check_claims(summaries: List[Dict]) -> Dict[str, Any]:
+    """Identify claims that appear in multiple sources vs. single sources"""
+    # Extract key claims from summaries
+    # Check which appear multiple times
+    # Flag single-source claims as "needs verification"
+    pass
+Why: Distinguish well-supported facts from outlier claims, improve reliability.
+
+9. Smart Round Termination
+pythondef calculate_information_gain(prev_round: Dict, current_round: Dict) -> float:
+    """Measure how much new information this round added"""
+    # Compare unique facts, sources, insights
+    # Return 0-1 score
+    # If < 0.3, probably not worth continuing
+    pass
+Why: Stop when hitting diminishing returns, save time and money.
+
+10. Add PDF/Academic Paper Handling
+pythondef extract_arxiv_papers(query: str) -> List[Dict]:
+    """Search and extract from academic papers"""
+    # Use arxiv API
+    # Extract abstracts and key findings
+    pass
+
+def prioritize_academic_sources(urls: List[str]) -> List[str]:
+    """Put academic sources first"""
+    academic = [u for u in urls if any(d in u for d in ['.edu', 'arxiv', 'scholar', '.gov'])]
+    other = [u for u in urls if u not in academic]
+    return academic + other
+Why: Academic sources often highest quality, prioritize them.
+
+📊 SUMMARY OF RECOMMENDATIONS
+Must-Have Changes:
+
+✅ Improved prompts (all 5 functions) - HIGHEST PRIORITY
+✅ Source quality scoring
+✅ Question deduplication
+✅ URL diversity enforcement
+
+Should-Have Changes:
+5. ⚡ Smart caching (saves time/money on re-runs)
+6. 💾 Checkpoint system (resilience)
+7. 🎯 Query expansion (better search)
+Nice-to-Have:
+8. 💰 Token/cost tracking
+9. 🔍 Cross-reference fact checking
+10. 🎓 Academic paper prioritization
+11. 📉 Information gain calculation
+Which would you like me to implement? I suggest starting with 1-4 as they'll have the biggest impact on quality, then we can add the others based on your priorities.

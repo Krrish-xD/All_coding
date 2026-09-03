@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/krrish/.gemini/the_crew/v2/run_tests.py", line 13, in <module>
+    from tests import test_utils, test_cache
+  File "/home/krrish/.gemini/the_crew/v2/tests/test_cache.py", line 13, in <module>
+    from cache import (
+    ...<7 lines>...
+    )
+  File "/home/krrish/.gemini/the_crew/v2/cache.py", line 15, in <module>
+    from sentence_transformers import SentenceTransformer
+ModuleNotFoundError: No module named 'sentence_transformers'

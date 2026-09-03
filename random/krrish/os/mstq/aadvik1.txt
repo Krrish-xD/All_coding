@@ -1,0 +1,19 @@
+step 1:
+create the main file using touch:
+touch code.c
+step 2:
+create a executible script for easy testing:
+nano run.sh:
+gcc code.c -o code
+./code
+step 3:
+give the executible script the correct permissions:
+chmod +x run.sh
+step 4:
+write the hash includes and create a main and some temporary variables:
+#include .....
+.
+.
+int main(){
+    
+}

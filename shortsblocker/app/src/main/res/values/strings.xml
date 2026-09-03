@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Shorts Blocker</string>
+    <string name="accessibility_service_description">Shorts Blocker monitors the YouTube app view hierarchy to detect and prevent YouTube Shorts consumption by navigating away automatically.</string>
+</resources>

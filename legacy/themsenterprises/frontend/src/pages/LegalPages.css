@@ -1,0 +1,66 @@
+/* Shared styles for Terms & Conditions and Privacy Policy pages */
+
+.legal-page-container {
+  max-width: 800px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  color: #333;
+  font-family: 'Inter', sans-serif;
+}
+
+.legal-page-container h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 1rem;
+}
+
+.legal-content {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.legal-content h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: #111;
+}
+
+.legal-content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: #111;
+}
+
+.legal-content p {
+  margin-bottom: 1.5rem;
+}
+
+.legal-content ul,
+.legal-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.legal-content li {
+  margin-bottom: 0.5rem;
+}
+
+.legal-content a {
+  color: #dc2626;
+  text-decoration: none;
+  transition: text-decoration 0.2s ease;
+}
+
+.legal-content a:hover {
+  text-decoration: underline;
+}

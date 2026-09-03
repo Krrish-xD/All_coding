@@ -1,0 +1,54 @@
+ The Semantic Cache: How Vector Embeddings Create an Intelligent, Long-Term Memory
+
+  At the heart of our Deep Research Agent v2 is a sophisticated caching system designed to make it faster, smarter, and more cost-effective over time.
+  This system goes beyond simple caching; it uses vector embeddings to create a "semantic cache," allowing the agent to understand the meaning of its
+  research questions and reuse past work in an intelligent way. This forms the agent's long-term memory.
+
+  The system is built on two core components: a local SQLite database for structured data storage and a local embedding model for semantic
+  understanding.
+
+  1. Vector Embeddings: Turning Questions into Numbers
+
+  The magic begins with a process called "embedding." We use a small, efficient AI model (like all-MiniLM-L6-v2) that runs directly on your machine.
+  Its sole job is to read a piece of text—in our case, a research question—and convert it into a list of numbers called a "vector." This vector
+  represents the question's semantic meaning. Questions with similar meanings will have mathematically similar vectors.
+
+  For example:
+   * "What are the benefits of solar power?" might become the vector [0.1, 0.9, 0.2, ...]
+   * "What are the advantages of photovoltaic energy?" would become a very similar vector, like [0.11, 0.89, 0.21, ...]
+   * "What is the capital of France?" would become a completely different vector, like [0.8, 0.2, 0.5, ...]
+
+  This process gives the agent a mathematical way to grasp the nuance and intent behind a question, rather than just seeing it as a string of text.
+
+  2. The SQLite Cache: A Structured Memory
+
+  All of the agent's findings are stored in a single research_cache.db file. This database contains several tables, but the most important one for our
+  semantic cache is the summary_cache. Each row in this table stores:
+
+   * The URL of the source document.
+   * The original research question that was asked.
+   * The question's vector embedding.
+   * The final summary that was generated.
+   * A timestamp and other metadata.
+
+  3. The Semantic Cache Workflow: Putting It All Together
+
+  When the agent needs to summarize a URL for a new research question, it follows this intelligent workflow:
+
+   1. Content Check: First, it checks a simple content_cache table in the database to see if it has already scraped this URL recently. If so, it saves
+      time and bandwidth by using the cached text.
+   2. Vector Generation: The agent takes the new research question and uses the local embedding model to generate its vector.
+   3. Similarity Search: The agent then performs a database query. It asks: "For this specific URL, are there any cached summaries whose question vectors
+      are highly similar to my new question's vector?" This is done using a mathematical calculation called "cosine similarity," which measures the angle
+      between two vectors.
+   4. Decision Point:
+       * Cache Hit (Similarity > 0.95): If the agent finds a previously asked question that is semantically very close to the new one, it concludes that
+         the existing summary is "good enough." It retrieves the cached summary instantly. This completely avoids a costly API call to the main Gemini
+         model.
+       * Cache Miss (Similarity < 0.95): If no sufficiently similar question is found in the cache for that URL, the agent proceeds as normal. It makes
+         an API call to the Gemini model to generate a new, high-quality summary based on the document and the specific new question.
+   5. Memory Update: Crucially, after generating a new summary, the agent saves it to the summary_cache table, along with the new question and its
+      vector.
+
+  By following this process, the agent continuously enriches its own knowledge base. Every API call is an investment, creating a new, reusable piece
+  of knowledge. This ensures that the more you use the agent, the smarter, faster, and cheaper it becomes.

@@ -1,0 +1,299 @@
+{
+  "reload_style_on_change": true,
+  "layer": "top",
+  "position": "top",
+  "margin-top": 6,
+  "spacing": 0,
+  "modules-left": [
+    "hyprland/workspaces",
+    "mpris",
+    "group/caffeine-tray"
+  ],
+  "modules-center": [
+    "clock",
+    "custom/update",
+    "custom/voxtype",
+    "custom/screenrecording-indicator",
+    "custom/idle-indicator",
+    "custom/notification-silencing-indicator"
+  ],
+  "modules-right": [
+    "custom/network_traffic",
+    "group/resources",
+    "battery"
+  ],
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "format": "{icon}",
+    "format-icons": {
+      "default": "",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "0",
+      "active": "󱓻"
+    },
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": []
+    }
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    },
+    "tooltip": true,
+    "tooltip-format-activated": "Caffeine Mode Active",
+    "tooltip-format-deactivated": "Caffeine Mode Inactive"
+  },
+  "mpris": {
+    "format": "{player_icon} {dynamic}",
+    "format-paused": "{status_icon} <i>{dynamic}</i>",
+    "player-icons": {
+      "default": "󰎆",
+      "spotify": "󰓇",
+      "firefox": "󰈹",
+      "chromium": "",
+      "brave": "\ue63c"
+    },
+    "status-icons": {
+      "paused": "󰏤"
+    },
+    "max-length": 30
+  },
+  "custom/omarchy": {
+    "format": "<span font='omarchy'>\ue900</span>",
+    "on-click": "omarchy-menu",
+    "on-click-right": "xdg-terminal-exec",
+    "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
+  },
+  "custom/update": {
+    "format": "",
+    "exec": "omarchy-update-available",
+    "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
+    "tooltip-format": "Omarchy update available",
+    "signal": 7,
+    "interval": 21600
+  },
+  "cpu": {
+    "interval": 2,
+    "format": " {usage}%  ",
+    "on-click": "omarchy-launch-or-focus-tui btop",
+    "on-click-right": "alacritty"
+  },
+  "clock": {
+    "interval": 1,
+    "format": "{:%d %a, %H:%M:%S}",
+    "tooltip": false
+  },
+  "custom/weather": {
+    "exec": "$OMARCHY_PATH/default/waybar/weather.sh",
+    "return-type": "json",
+    "interval": 60,
+    "tooltip": false,
+    "on-click": "notify-send -u low \"$(omarchy-weather-status)\""
+  },
+  "network": {
+    "format-icons": [
+      "󰤯",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ],
+    "format": "{icon}",
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰀂",
+    "format-disconnected": "󰤮",
+    "tooltip-format-wifi": "{essid} ({frequency} GHz)",
+    "tooltip-format-ethernet": "Connected",
+    "tooltip-format-disconnected": "Disconnected",
+    "interval": 3,
+    "spacing": 1,
+    "on-click": "omarchy-launch-wifi"
+  },
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-discharging": "{capacity}% {icon}",
+    "format-charging": "{capacity}% {icon}",
+    "format-plugged": "{capacity}% ",
+    "format-icons": {
+      "charging": [
+        "󰢜",
+        "󰂆",
+        "󰂇",
+        "󰂈",
+        "󰢝",
+        "󰂉",
+        "󰢞",
+        "󰂊",
+        "󰂋",
+        "󰂅"
+      ],
+      "default": [
+        "󰁺",
+        "󰁻",
+        "󰁼",
+        "󰁽",
+        "󰁾",
+        "󰁿",
+        "󰂀",
+        "󰂁",
+        "󰂂",
+        "󰁹"
+      ]
+    },
+    "format-full": "{capacity}% 󰂅",
+    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+    "interval": 5,
+    "on-click": "omarchy-menu power",
+    "on-click-right": "notify-send -u low \"$(omarchy-battery-status)\"",
+    "states": {
+      "warning": 20,
+      "critical": 10
+    }
+  },
+  "bluetooth": {
+    "format": "",
+    "format-off": "󰂲",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂱",
+    "format-no-controller": "",
+    "tooltip-format": "Devices connected: {num_connections}",
+    "on-click": "omarchy-launch-bluetooth"
+  },
+  "pulseaudio": {
+    "format": "{icon}",
+    "on-click": "omarchy-launch-audio",
+    "on-click-right": "pamixer -t",
+    "tooltip-format": "Playing at {volume}%",
+    "scroll-step": 5,
+    "format-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "headset": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    }
+  },
+  "group/tray-expander": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 600,
+      "children-class": "tray-group-item"
+    },
+    "modules": [
+      "custom/expand-icon",
+      "tray"
+    ]
+  },
+  "custom/expand-icon": {
+    "format": "",
+    "tooltip": false,
+    "on-scroll-up": "",
+    "on-scroll-down": "",
+    "on-scroll-left": "",
+    "on-scroll-right": ""
+  },
+  "custom/screenrecording-indicator": {
+    "on-click": "omarchy-capture-screenrecording",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/screen-recording.sh",
+    "signal": 8,
+    "return-type": "json"
+  },
+  "custom/idle-indicator": {
+    "on-click": "omarchy-toggle-idle",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/idle.sh",
+    "signal": 9,
+    "return-type": "json"
+  },
+  "custom/notification-silencing-indicator": {
+    "on-click": "omarchy-toggle-notification-silencing",
+    "exec": "$OMARCHY_PATH/default/waybar/indicators/notification-silencing.sh",
+    "signal": 10,
+    "return-type": "json"
+  },
+  "custom/voxtype": {
+    "exec": "omarchy-voxtype-status",
+    "return-type": "json",
+    "format": "{icon}",
+    "format-icons": {
+      "idle": "",
+      "recording": "󰍬",
+      "transcribing": "󰔟"
+    },
+    "tooltip": true,
+    "on-click-right": "omarchy-voxtype-config",
+    "on-click": "omarchy-voxtype-model"
+  },
+  "tray": {
+    "icon-size": 12,
+    "spacing": 17
+  },
+  "group/caffeine-tray": {
+    "orientation": "horizontal",
+    "modules": [
+      "idle_inhibitor",
+      "group/tray-expander"
+    ]
+  },
+  "group/resources": {
+    "orientation": "horizontal",
+    "modules": [
+      "cpu",
+      "custom/gpu",
+      "memory",
+      "disk",
+      "temperature",
+      "custom/gpu-temp"
+    ]
+  },
+  "custom/gpu": {
+    "exec": "~/.config/waybar/scripts/gpu_usage",
+    "return-type": "json",
+    "format": "{}  ",
+    "tooltip": false
+  },
+  "custom/network_traffic": {
+    "exec": "~/.config/waybar/scripts/network_traffic",
+    "return-type": "json",
+    "format": "{}",
+    "tooltip": false
+  },
+  "memory": {
+    "format": " {}%  ",
+    "interval": 2
+  },
+  "disk": {
+    "format": "󰋊 {percentage_used}%  ",
+    "interval": 60
+  },
+  "temperature": {
+    "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+    "format": " {temperatureC}°C ",
+    "tooltip": true,
+    "tooltip-format": "CPU Temperature: {temperatureC}°C",
+    "interval": 2
+  },
+  "custom/gpu-temp": {
+    "exec": "~/.config/waybar/scripts/gpu_temp",
+    "return-type": "json",
+    "format": "{}",
+    "tooltip": true
+  }
+}

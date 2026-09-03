@@ -1,0 +1,313 @@
+.profile-page {
+  padding: 2rem 0;
+  min-height: 60vh;
+}
+
+.profile-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  background-color: #e50000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+}
+
+.profile-title h1 {
+  margin: 0 0 0.5rem 0;
+  color: #1a1a1a;
+  font-size: 2rem;
+}
+
+.profile-title p {
+  margin: 0;
+  color: #6b7280;
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.profile-section {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+}
+
+.section-header h2 {
+  margin: 0;
+  color: #1a1a1a;
+  font-size: 1.25rem;
+}
+
+.edit-btn,
+.save-btn,
+.cancel-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.edit-btn {
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+}
+
+.edit-btn:hover {
+  background-color: #f3f4f6;
+}
+
+.save-btn {
+  background-color: #10b981;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #059669;
+}
+
+.cancel-btn {
+  background-color: #dc2626;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #b91c1c;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.profile-form {
+  padding: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  color: #374151;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #e50000;
+  box-shadow: 0 0 0 2px rgba(229, 0, 0, 0.2);
+}
+
+.form-group input:disabled,
+.form-group select:disabled {
+  background-color: #f9fafb;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+.addresses-list {
+  padding: 1.5rem;
+}
+
+.address-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  background: #f9fafb;
+}
+
+.address-type {
+  flex-shrink: 0;
+}
+
+.type-badge {
+  background-color: #e50000;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.address-details {
+  flex-grow: 1;
+}
+
+.address-details p {
+  margin: 0 0 0.25rem 0;
+  color: #374151;
+}
+
+.address-details p:last-child {
+  margin-bottom: 0;
+}
+
+.address-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.edit-address-btn,
+.delete-address-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  transition: background-color 0.2s ease;
+}
+
+.edit-address-btn {
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+}
+
+.edit-address-btn:hover {
+  background-color: #f3f4f6;
+}
+
+.delete-address-btn {
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.delete-address-btn:hover {
+  background-color: #fee2e2;
+}
+
+.no-addresses {
+  text-align: center;
+  color: #6b7280;
+  padding: 2rem;
+  font-style: italic;
+}
+
+.add-address-section {
+  padding: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+}
+
+.add-address-section h3 {
+  margin: 0 0 1rem 0;
+  color: #1a1a1a;
+  font-size: 1.125rem;
+}
+
+.address-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.profile-unauthorized {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.unauthorized-icon {
+  font-size: 4rem;
+  color: #d1d5db;
+  margin-bottom: 1rem;
+}
+
+.profile-unauthorized h2 {
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.profile-unauthorized p {
+  color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .profile-title h1 {
+    font-size: 1.5rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .address-card {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .address-actions {
+    flex-direction: row;
+  }
+}

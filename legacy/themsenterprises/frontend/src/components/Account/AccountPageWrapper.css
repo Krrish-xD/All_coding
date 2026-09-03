@@ -1,0 +1,43 @@
+
+.account-page-wrapper {
+  /* General wrapper for the account page */
+}
+
+.account-header-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: transparent; /* Allow Header's background to show */
+  margin: 0 1rem; /* Match header margin for desktop */
+}
+
+.account-header-wrapper .header {
+  margin: 0;
+  border: none;
+  box-shadow: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background: rgba(250, 206, 212, 0.85) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.account-header-wrapper .account-mobile-nav-wrapper {
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-shadow: none;
+}
+
+.account-page-body {
+  padding-top: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 2rem;
+}
+
+.account-content-area {
+  width: 100%;
+}

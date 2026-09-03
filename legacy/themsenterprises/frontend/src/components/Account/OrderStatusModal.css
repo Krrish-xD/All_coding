@@ -1,0 +1,70 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Increased z-index */
+}
+
+.order-status-modal {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.order-status-modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.order-status-modal .modal-header h3 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.order-status-modal .close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: relative; /* Required for z-index */
+  z-index: 10; /* Ensure it's on top */
+}
+
+.order-status-modal .modal-body .order-id {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.order-status-modal .status-display {
+  border-left: 4px solid;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.order-status-modal .status-display p {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin: 0 0 0.25rem 0;
+}
+
+.order-status-modal .status-display span {
+  font-size: 0.9rem;
+  color: #555;
+}

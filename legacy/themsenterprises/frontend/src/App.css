@@ -1,0 +1,57 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #dbdee3;
+}
+
+.App.cart-background {
+  background: linear-gradient(135deg, rgb(225, 216, 216) 100%, #f9fafb 0%);
+}
+
+main {
+  flex: 1;
+}
+
+/* Global utility classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Brand colors */
+.brand-red {
+  color: #e50000;
+}
+
+.brand-dark {
+  color: #1a1a1a;
+}
+
+.brand-light {
+  color: #f2f2f2;
+}
+
+.brand-surface {
+  color: #dbdee3;
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+}

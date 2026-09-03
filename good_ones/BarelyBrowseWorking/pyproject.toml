@@ -1,0 +1,16 @@
+[project]
+name = "repl-nix-workspace"
+version = "0.1.0"
+description = "ChatGPT Browser - A dedicated browsing environment for ChatGPT with workspace isolation"
+requires-python = ">=3.11"
+dependencies = [
+    "markdown>=3.9",
+    "pyqt6>=6.9.1",
+    "pyqt6-webengine>=6.9.0",
+]
+
+[project.optional-dependencies]
+gui = [
+    "pyqt6>=6.9.1",
+    "pyqt6-webengine>=6.9.0",
+]
